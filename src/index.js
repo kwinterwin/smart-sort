@@ -1,7 +1,6 @@
 class Sorter {
 
-  constructor() {
-  }
+  constructor() {}
 
   add(element) {
     var length=this.length;
@@ -29,14 +28,37 @@ class Sorter {
    }
 
   sort(indices) {
-   for(var i=0;i<indices.length;i++){
-           if (this[indices[i]]>=this[indices[i+1]])
-           {
-               var t=this[indices[i]];
-               this[indices[i]]=this[indices[i+1]];
-               this[indices[i+1]] =t;
-           }
-       }
+    var arr = [];
+    for(var i = 0; i<indices.length;i++){
+       arr[i] = this[indices[i]];
+    }
+
+    for(var m = 0; m<arr.length;m++){
+   
+      for(var j=0;j<arr.length;j++){
+      if(arr[j]>=arr[j+1]){
+        var t = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = t;
+      }
+      }
+    }
+
+    for(var m = 0; m<indices.length;m++){
+   
+      for(var j=0;j<indices.length;j++){
+      if(indices[j]>=indices[j+1]){
+        var t = indices[j];
+        indices[j] = indices[j+1];
+        indices[j+1] = t;
+      }
+      }
+    }
+
+    for(var i = 0; i<indices.length;i++){
+      this[indices[i]] = arr[i];
+    }
+
   }
 
   setComparator(compareFunction) {
